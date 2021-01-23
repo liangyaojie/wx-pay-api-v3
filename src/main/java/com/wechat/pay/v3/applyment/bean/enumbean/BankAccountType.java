@@ -9,7 +9,13 @@ package com.wechat.pay.v3.applyment.bean.enumbean;
  */
 public enum BankAccountType {
 
+    /**
+     * 对公银行账户
+     */
     ACCOUNT_TYPE_BUSINESS("对公银行账户"),
+    /**
+     * 经营者个人银行卡
+     */
     ACCOUNT_TYPE_PRIVATE("经营者个人银行卡");
 
     private String desc;

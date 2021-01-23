@@ -47,7 +47,6 @@ public class WxApiV3Config {
     private String notifyUrl;
 
 
-
     public String getSpAppId() {
         return spAppId;
     }

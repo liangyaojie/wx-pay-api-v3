@@ -15,7 +15,7 @@ public class CertificateInfo {
      * 必填
      * 登记证书照片
      */
-    private String CertCopy;
+    private String certCopy;
 
     /**
      * 必填
@@ -61,11 +61,11 @@ public class CertificateInfo {
     private String periodEnd;
 
     public String getCertCopy() {
-        return CertCopy;
+        return certCopy;
     }
 
     public void setCertCopy(String certCopy) {
-        CertCopy = certCopy;
+        this.certCopy = certCopy;
     }
 
     public WxCertType getCertType() {

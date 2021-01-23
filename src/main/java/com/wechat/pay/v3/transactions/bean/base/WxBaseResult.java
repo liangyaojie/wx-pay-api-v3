@@ -1,57 +1,18 @@
-package com.wechat.pay.v3.transactions.result;
+package com.wechat.pay.v3.transactions.bean.base;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wechat.pay.v3.transactions.bean.base.WxAmount;
-import com.wechat.pay.v3.transactions.bean.base.WxPayer;
-import com.wechat.pay.v3.transactions.bean.base.WxPromotionDetail;
-import com.wechat.pay.v3.transactions.bean.base.WxSceneInfo;
 
 import java.util.List;
 
 /**
- * 微信订单查询结果
+ * 微信订单查询结果基础信息
  *
  * @author LYJ
- * @date 2021/1/23 9:46
+ * @date 2021/1/23 15:27
  * @since 1.0
  */
-public class WxQueryResult {
-
-
-    /**
-     * 服务商公众号ID
-     * 必填：是
-     */
-    @JsonProperty("sp_appid")
-    @JSONField(name = "sp_appid")
-    private String spAppId;
-
-
-    /**
-     * 服务商户号
-     * 必填：是
-     */
-    @JsonProperty("sp_mchid")
-    @JSONField(name = "sp_mchid")
-    private String spMchId;
-
-    /**
-     * 子商户公众号ID
-     * 必填：否
-     */
-    @JsonProperty("sub_appid")
-    @JSONField(name = "sub_appid")
-    private String subAppId;
-
-    /**
-     * 子商户号
-     * 必填：是
-     */
-    @JsonProperty("sub_mchid")
-    @JSONField(name = "sub_mchid")
-    private String subMchId;
-
+public class WxBaseResult {
 
     /**
      * 商户订单号
@@ -156,38 +117,6 @@ public class WxQueryResult {
     private List<WxPromotionDetail> promotionDetail;
 
 
-    public String getSpAppId() {
-        return spAppId;
-    }
-
-    public void setSpAppId(String spAppId) {
-        this.spAppId = spAppId;
-    }
-
-    public String getSpMchId() {
-        return spMchId;
-    }
-
-    public void setSpMchId(String spMchId) {
-        this.spMchId = spMchId;
-    }
-
-    public String getSubAppId() {
-        return subAppId;
-    }
-
-    public void setSubAppId(String subAppId) {
-        this.subAppId = subAppId;
-    }
-
-    public String getSubMchId() {
-        return subMchId;
-    }
-
-    public void setSubMchId(String subMchId) {
-        this.subMchId = subMchId;
-    }
-
     public String getOutTradeNo() {
         return outTradeNo;
     }
@@ -286,12 +215,8 @@ public class WxQueryResult {
 
     @Override
     public String toString() {
-        return "WxQueryResult{" +
-                "spAppId='" + spAppId + '\'' +
-                ", spMchId='" + spMchId + '\'' +
-                ", subAppId='" + subAppId + '\'' +
-                ", subMchId='" + subMchId + '\'' +
-                ", outTradeNo='" + outTradeNo + '\'' +
+        return "WxBaseResult{" +
+                "outTradeNo='" + outTradeNo + '\'' +
                 ", transactionId='" + transactionId + '\'' +
                 ", tradeType='" + tradeType + '\'' +
                 ", tradeState='" + tradeState + '\'' +

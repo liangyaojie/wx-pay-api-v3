@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class SettlementInfo {
      * 入驻结算规则ID
      */
     @JsonProperty("settlement_id")
+    @JSONField(name = "settlement_id")
     private String settlementId;
 
     /**
@@ -25,6 +27,7 @@ public class SettlementInfo {
      * 所属行业
      */
     @JsonProperty("qualification_type")
+    @JSONField(name = "qualification_type")
     private String qualificationType;
 
     /**
@@ -32,6 +35,7 @@ public class SettlementInfo {
      * 特殊资质图片
      */
     @JsonProperty("qualifications")
+    @JSONField(name = "qualifications")
     private List<String> qualifications;
 
     /**
@@ -39,6 +43,7 @@ public class SettlementInfo {
      * 优惠费率活动ID
      */
     @JsonProperty("activities_id")
+    @JSONField(name = "activities_id")
     private String activitiesId;
 
     /**
@@ -46,13 +51,15 @@ public class SettlementInfo {
      * 优惠费率活动值
      */
     @JsonProperty("activities_rate")
+    @JSONField(name = "activities_rate")
     private String activitiesRate;
 
     /**
      * 非必填
      * 优惠费率活动补充材料
      */
-//    @JsonProperty("activities_additions")
+    @JsonProperty("activities_additions")
+    @JSONField(name = "activities_additions")
     private List<String> activitiesAdditions;
 
     public String getSettlementId() {

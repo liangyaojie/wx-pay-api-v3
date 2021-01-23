@@ -29,12 +29,12 @@ public class FieldEncryptFormat {
         Field[] infoFieldArray = infoClass.getDeclaredFields();
         for (Field field : infoFieldArray) {
             if (field.isAnnotationPresent(SpecEncrypt.class)) {
-                if (field.getType().getTypeName().equals("java.lang.String")) {
+                if ("java.lang.String".equals(field.getType().getTypeName())) {
                     field.setAccessible(true);
                     Object oldValue = field.get(encryptObject);
                     if (oldValue != null) {
                         String oldStr = (String) oldValue;
-                        if (!oldStr.trim().equals("'")) {
+                        if (!"'".equals(oldStr.trim())) {
                             field.set(encryptObject, rsaEncryptOAEP(oldStr, certificate));
                         }
                     }
@@ -64,8 +64,8 @@ public class FieldEncryptFormat {
             Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-1AndMGF1Padding");
             cipher.init(Cipher.ENCRYPT_MODE, certificate.getPublicKey());
             byte[] data = message.getBytes("utf-8");
-            byte[] cipherdata = cipher.doFinal(data);
-            return Base64.getEncoder().encodeToString(cipherdata);
+            byte[] cipherData = cipher.doFinal(data);
+            return Base64.getEncoder().encodeToString(cipherData);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException("当前Java环境不支持RSA v1.5/OAEP", e);
         } catch (InvalidKeyException e) {
@@ -78,18 +78,18 @@ public class FieldEncryptFormat {
     /**
      * 证书解密
      *
-     * @param ciphertext
+     * @param cipherText
      * @param privateKey
      * @return
      * @throws BadPaddingException
      * @throws IOException
      */
-    public static String rsaDecryptOAEP(String ciphertext, PrivateKey privateKey)
+    public static String rsaDecryptOAEP(String cipherText, PrivateKey privateKey)
             throws BadPaddingException, IOException {
         try {
             Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-1AndMGF1Padding");
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
-            byte[] data = Base64.getDecoder().decode(ciphertext);
+            byte[] data = Base64.getDecoder().decode(cipherText);
             return new String(cipher.doFinal(data), "utf-8");
         } catch (NoSuchPaddingException | NoSuchAlgorithmException e) {
             throw new RuntimeException("当前Java环境不支持RSA v1.5/OAEP", e);

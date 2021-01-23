@@ -1,8 +1,9 @@
 package com.wechat.pay.v3.transactions.service;
 
+import com.wechat.pay.v3.transactions.bean.base.WxBaseResult;
+import com.wechat.pay.v3.transactions.bean.directly.WxDirectlyQueryResult;
 import com.wechat.pay.v3.transactions.bean.directly.WxDirectlyRequest;
 import com.wechat.pay.v3.transactions.bean.partner.WxPartnerRequest;
-import com.wechat.pay.v3.transactions.result.WxQueryResult;
 
 import java.io.IOException;
 import java.util.Map;
@@ -34,6 +35,22 @@ public interface WxPayV3Api {
      * H5下单请求url
      */
     public static final String H5_URL = "https://api.mch.weixin.qq.com/v3/pay/transactions/h5";
+
+    /**
+     * 微信支付订单号查询订单请求url
+     */
+    public static final String QUERY_BY_TRANSACTION_ID_URL = "https://api.mch.weixin.qq.com/v3/pay/partner/transactions/id/{transaction_id}";
+
+
+    /**
+     * 商户订单号查询订单请求url
+     */
+    public static final String QUERY_BY_OUT_TRADE_NO_URL = "https://api.mch.weixin.qq.com/v3/pay/partner/transactions/out-trade-no/{out_trade_no}";
+
+    /**
+     * 关闭订单请求url
+     */
+    public static final String CLOSE_TRANSACTIONS_URL = "https://api.mch.weixin.qq.com/v3/pay/transactions/out-trade-no/{out_trade_no}/close";
 
 
     /**
@@ -127,26 +144,28 @@ public interface WxPayV3Api {
      * @return
      * @throws IOException
      */
-    WxQueryResult queryPartnerByTransactionId(String transactionId) throws IOException;
+    WxBaseResult queryPartnerByTransactionId(String transactionId) throws IOException;
 
 
     /**
      * 服务商通过商户订单号查询订单
      *
-     * @param OutTradeNo
+     * @param outTradeNo
      * @return
      * @throws IOException
      */
-    WxQueryResult queryPartnerByOutTradeNo(String OutTradeNo) throws IOException;
+    WxBaseResult queryPartnerByOutTradeNo(String outTradeNo) throws IOException;
 
 
     /**
-     * 服务商关闭订单
+     * 服务商
+     * 关闭订单
      *
+     * @param outTradeNo
      * @return
      * @throws IOException
      */
-    Map<String, String> closePartnerTransactions() throws IOException;
+    Boolean closePartnerTransactions(String outTradeNo) throws IOException;
 
 
     /**
@@ -187,20 +206,33 @@ public interface WxPayV3Api {
 
 
     /**
-     * 查询订单
+     * 通过微信订单号查询订单
      *
+     * @param transactionId
      * @return
      * @throws IOException
      */
-    Map<String, String> queryTransactions() throws IOException;
+    WxDirectlyQueryResult queryByTransactionId(String transactionId) throws IOException;
 
 
     /**
-     * 关闭订单
+     * 通过商户订单号查询订单
      *
+     * @param outTradeNo
      * @return
      * @throws IOException
      */
-    Map<String, String> closeTransactions() throws IOException;
+    WxDirectlyQueryResult queryByOutTradeNo(String outTradeNo) throws IOException;
+
+
+    /**
+     * 直连商户
+     * 关闭订单
+     *
+     * @param outTradeNo
+     * @return
+     * @throws IOException
+     */
+    Boolean closeTransactions(String outTradeNo) throws IOException;
 
 }

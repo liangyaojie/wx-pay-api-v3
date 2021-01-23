@@ -14,7 +14,7 @@ import com.wechat.pay.v3.applyment.bean.result.BankAccountResult;
 import com.wechat.pay.v3.config.WxApiV3Config;
 import com.wechat.pay.v3.applyment.service.ApplymentService;
 import com.wechat.pay.v3.applyment.validator.FieldEncryptFormat;
-import com.wechat.pay.utils.JsonUtils;
+import com.wechat.pay.v3.utils.JsonUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
