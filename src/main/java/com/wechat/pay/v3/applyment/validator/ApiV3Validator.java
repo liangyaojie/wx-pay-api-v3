@@ -59,7 +59,7 @@ public class ApiV3Validator {
 
     private static String checkBankAccountInfo(BankAccountInfo bankAccountInfo) {
         if (bankAccountInfo == null) {
-            return "结算银行账户不能为空!";
+            return null;
         }
         if (null == bankAccountInfo.getBankAccountType()) {
             return "账户类型不能为空！";

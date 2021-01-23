@@ -65,7 +65,6 @@ public class AccountValidation {
     private String remark;
 
 
-
     /**
      * 汇款截止时间
      */

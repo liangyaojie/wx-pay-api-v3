@@ -1,4 +1,5 @@
-package com.wechat.pay.v3.applyment.util;
+package com.wechat.pay.utils;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

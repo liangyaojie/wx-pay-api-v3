@@ -26,7 +26,6 @@ public class SalesInfo {
     /**
      * 条件选填
      * 线下门店场景
-     *
      */
     @JsonProperty("biz_store_info")
     private BizStoreInfo bizStoreInfo;
@@ -41,7 +40,6 @@ public class SalesInfo {
     /**
      * 条件选填
      * 小程序场景
-     *
      */
     @JsonProperty("mini_program_info")
     private MiniProgramInfo miniProgramInfo;

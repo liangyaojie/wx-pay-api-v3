@@ -50,64 +50,64 @@ public class BankAccountResult {
     private String verifyResult;
 
 
-  public BankAccountType getAccountType() {
-    return accountType;
-  }
+    public BankAccountType getAccountType() {
+        return accountType;
+    }
 
-  public void setAccountType(BankAccountType accountType) {
-    this.accountType = accountType;
-  }
+    public void setAccountType(BankAccountType accountType) {
+        this.accountType = accountType;
+    }
 
-  public String getAccountBank() {
-    return accountBank;
-  }
+    public String getAccountBank() {
+        return accountBank;
+    }
 
-  public void setAccountBank(String accountBank) {
-    this.accountBank = accountBank;
-  }
+    public void setAccountBank(String accountBank) {
+        this.accountBank = accountBank;
+    }
 
-  public String getBankName() {
-    return bankName;
-  }
+    public String getBankName() {
+        return bankName;
+    }
 
-  public void setBankName(String bankName) {
-    this.bankName = bankName;
-  }
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
 
-  public String getBankBranchId() {
-    return bankBranchId;
-  }
+    public String getBankBranchId() {
+        return bankBranchId;
+    }
 
-  public void setBankBranchId(String bankBranchId) {
-    this.bankBranchId = bankBranchId;
-  }
+    public void setBankBranchId(String bankBranchId) {
+        this.bankBranchId = bankBranchId;
+    }
 
-  public String getAccountNumber() {
-    return accountNumber;
-  }
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 
-  public void setAccountNumber(String accountNumber) {
-    this.accountNumber = accountNumber;
-  }
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
-  public String getVerifyResult() {
-    return verifyResult;
-  }
+    public String getVerifyResult() {
+        return verifyResult;
+    }
 
-  public void setVerifyResult(String verifyResult) {
-    this.verifyResult = verifyResult;
-  }
+    public void setVerifyResult(String verifyResult) {
+        this.verifyResult = verifyResult;
+    }
 
 
-  @Override
-  public String toString() {
-    return "BankAccountResult{" +
-            "accountType=" + accountType +
-            ", accountBank='" + accountBank + '\'' +
-            ", bankName='" + bankName + '\'' +
-            ", bankBranchId='" + bankBranchId + '\'' +
-            ", accountNumber='" + accountNumber + '\'' +
-            ", verifyResult='" + verifyResult + '\'' +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "BankAccountResult{" +
+                "accountType=" + accountType +
+                ", accountBank='" + accountBank + '\'' +
+                ", bankName='" + bankName + '\'' +
+                ", bankBranchId='" + bankBranchId + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", verifyResult='" + verifyResult + '\'' +
+                '}';
+    }
 }

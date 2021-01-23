@@ -1,6 +1,8 @@
 package com.wechat.pay.v3.applyment.bean.enumbean;
 
-/**账户类型
+/**
+ * 账户类型
+ *
  * @author LYJ
  * @date 2021/1/15 15:42
  * @since 1.0

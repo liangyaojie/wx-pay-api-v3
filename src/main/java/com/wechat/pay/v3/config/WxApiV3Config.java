@@ -1,4 +1,4 @@
-package com.wechat.pay.v3.applyment.config;
+package com.wechat.pay.v3.config;
 
 /**
  * @author LYJ
@@ -7,18 +7,30 @@ package com.wechat.pay.v3.applyment.config;
  */
 public class WxApiV3Config {
     /**
+     * 服务商公众号ID
+     */
+    private String spAppId;
+
+    /**
      * 服务商户号
      */
-    private  String mchId ;
+    private String spMchId;
+    /**
+     * 子商户公众号ID
+     */
+    private String subAppId;
+    /**
+     * 子商户号
+     */
+    private String subMchId;
     /**
      * 商户证书序列号
      */
-    private  String mchSerialNo;
+    private String mchSerialNo;
     /**
      * apiV3密钥
      */
-    private  String apiV3Key;
-
+    private String apiV3Key;
 
     /**
      * 证书文件路径 .p12
@@ -29,13 +41,43 @@ public class WxApiV3Config {
      */
     private String mchPrivateKeyFilePath;
 
+    /**
+     * 微信回调地址notifyUrl
+     */
+    private String notifyUrl;
 
-    public String getMchId() {
-        return mchId;
+
+
+    public String getSpAppId() {
+        return spAppId;
     }
 
-    public void setMchId(String mchId) {
-        this.mchId = mchId;
+    public void setSpAppId(String spAppId) {
+        this.spAppId = spAppId;
+    }
+
+    public String getSpMchId() {
+        return spMchId;
+    }
+
+    public void setSpMchId(String spMchId) {
+        this.spMchId = spMchId;
+    }
+
+    public String getSubAppId() {
+        return subAppId;
+    }
+
+    public void setSubAppId(String subAppId) {
+        this.subAppId = subAppId;
+    }
+
+    public String getSubMchId() {
+        return subMchId;
+    }
+
+    public void setSubMchId(String subMchId) {
+        this.subMchId = subMchId;
     }
 
     public String getMchSerialNo() {
@@ -68,5 +110,13 @@ public class WxApiV3Config {
 
     public void setMchPrivateKeyFilePath(String mchPrivateKeyFilePath) {
         this.mchPrivateKeyFilePath = mchPrivateKeyFilePath;
+    }
+
+    public String getNotifyUrl() {
+        return notifyUrl;
+    }
+
+    public void setNotifyUrl(String notifyUrl) {
+        this.notifyUrl = notifyUrl;
     }
 }

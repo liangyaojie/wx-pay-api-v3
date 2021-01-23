@@ -3,7 +3,9 @@ package com.wechat.pay.v3.applyment.bean.info;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 
-/**超级管理员信息
+/**
+ * 超级管理员信息
+ *
  * @author LYJ
  * @date 2021/1/15 14:14
  * @since 1.0
@@ -23,7 +25,7 @@ public class ContactInfo {
      */
     @SpecEncrypt
     @JsonProperty("contact_id_number")
-    private String contactIdNumber ;
+    private String contactIdNumber;
     /**
      * 超级管理员微信openid
      * 与contactIdNumber二选一

@@ -2,7 +2,9 @@ package com.wechat.pay.v3.applyment.bean.info;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**经营资料
+/**
+ * 经营资料
+ *
  * @author LYJ
  * @date 2021/1/15 13:50
  * @since 1.0
@@ -10,19 +12,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BusinessInfo {
 
 
-    /**必填
+    /**
+     * 必填
      * 商户简称
      */
     @JsonProperty("merchant_shortname")
     private String merchantShortName;
 
-    /**必填
+    /**
+     * 必填
      * 客服电话
      */
     @JsonProperty("service_phone")
     private String servicePhone;
 
-    /**必填
+    /**
+     * 必填
      * 经营场景
      */
     @JsonProperty("sales_info")

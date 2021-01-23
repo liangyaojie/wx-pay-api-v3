@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2021/1/15 16:30
  * @since 1.0
  */
-public interface ApiV3Service {
+public interface ApplymentService {
 
     /**
      * 提交申请单请求url

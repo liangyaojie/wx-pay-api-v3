@@ -9,13 +9,12 @@ import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Validator;
 import com.wechat.pay.contrib.apache.httpclient.util.PemUtil;
 import com.wechat.pay.v3.applyment.bean.info.ApplymentInfo;
 import com.wechat.pay.v3.applyment.bean.info.BankAccountInfo;
-import com.wechat.pay.v3.applyment.config.WxApiV3Config;
-import com.wechat.pay.v3.applyment.util.JsonUtils;
 import com.wechat.pay.v3.applyment.bean.result.ApplymentStatusResult;
 import com.wechat.pay.v3.applyment.bean.result.BankAccountResult;
-import com.wechat.pay.v3.applyment.service.ApiV3Service;
+import com.wechat.pay.v3.config.WxApiV3Config;
+import com.wechat.pay.v3.applyment.service.ApplymentService;
 import com.wechat.pay.v3.applyment.validator.FieldEncryptFormat;
-import org.apache.commons.codec.Charsets;
+import com.wechat.pay.utils.JsonUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -28,7 +27,10 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
@@ -42,9 +44,9 @@ import static com.wechat.pay.v3.applyment.validator.ApiV3Validator.validateAndFo
  * @date 2021/1/15 16:33
  * @since 1.0
  */
-public class ApiV3ServiceImpl implements ApiV3Service {
+public class ApplymentServiceImpl implements ApplymentService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ApiV3ServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApplymentServiceImpl.class);
 
     /**
      * 测试AutoUpdateCertificatesVerifier的verify方法参数
@@ -59,7 +61,7 @@ public class ApiV3ServiceImpl implements ApiV3Service {
     private PrivateKey privateKey;
 
 
-    public ApiV3ServiceImpl(WxApiV3Config wxApiV3Config) {
+    public ApplymentServiceImpl(WxApiV3Config wxApiV3Config) {
         this.wxApiV3Config = wxApiV3Config;
         httpClientBuilder();
     }
@@ -72,9 +74,9 @@ public class ApiV3ServiceImpl implements ApiV3Service {
      * @throws Exception
      */
     @Override
-    public Map<String,String> applyment(ApplymentInfo applymentInfo) throws Exception {
+    public Map<String, String> applyment(ApplymentInfo applymentInfo) throws Exception {
         if (Objects.nonNull(validateAndFormat(applymentInfo))) {
-           throw  new RuntimeException(validateAndFormat(applymentInfo));
+            throw new RuntimeException(validateAndFormat(applymentInfo));
         }
         //敏感字段加密
         FieldEncryptFormat.encryptField(applymentInfo, certificate);
@@ -227,70 +229,44 @@ public class ApiV3ServiceImpl implements ApiV3Service {
     }
 
 
-
     private void setPostHeader(HttpPost httpPost) {
         httpPost.addHeader("Content-Type", "application/json");
         httpPost.addHeader("Accept", "application/json");
         httpPost.addHeader(WE_CHAT_PAY_SERIAL, certificate.getSerialNumber().toString(16).toUpperCase());
-        LOGGER.info(WE_CHAT_PAY_SERIAL+"--->" + certificate.getSerialNumber().toString(16).toUpperCase());
+        LOGGER.info(WE_CHAT_PAY_SERIAL + "--->" + certificate.getSerialNumber().toString(16).toUpperCase());
     }
 
-
-
-
-    /**
-     * 自动更新验证签名器获取httpClient
-     *
-     * @throws UnsupportedEncodingException
-     */
-    private void httpClient() throws UnsupportedEncodingException {
-        PrivateKey merchantPrivateKey = null;
-        try {
-            merchantPrivateKey = PemUtil.loadPrivateKey(new FileInputStream(new File(wxApiV3Config.getMchPrivateKeyFilePath())));
-        } catch (FileNotFoundException e) {
-            LOGGER.error("私钥文件传读取异常", e);
-            e.printStackTrace();
-        }
-        //使用自动更新的签名验证器，不需要传入证书
-        verifier = new AutoUpdateCertificatesVerifier(
-                new WechatPay2Credentials(wxApiV3Config.getMchId(), new PrivateKeySigner(wxApiV3Config.getMchSerialNo(), merchantPrivateKey)),
-                wxApiV3Config.getApiV3Key().getBytes(Charsets.UTF_8));
-        this.httpClient = WechatPayHttpClientBuilder.create()
-                .withMerchant(wxApiV3Config.getMchId(), wxApiV3Config.getMchSerialNo(), merchantPrivateKey)
-                .withValidator(new WechatPay2Validator(verifier))
-                .build();
-    }
 
     /**
      * 获取自动更新验证签名器httpClient
      */
     private void httpClientBuilder() {
+        if (Objects.isNull(wxApiV3Config)) {
+            throw new RuntimeException("wxApiV3Config配置为空");
+        }
+        if (Objects.isNull(wxApiV3Config.getSpMchId())) {
+            throw new RuntimeException("请配置商户号");
+        }
+        if (Objects.isNull(wxApiV3Config.getMchSerialNo())) {
+            throw new RuntimeException("请配置证书序列号");
+        }
+        if (Objects.isNull(wxApiV3Config.getApiV3Key())) {
+            throw new RuntimeException("请配置ApiV3key");
+        }
+        if (Objects.isNull(wxApiV3Config.getWeChatPayCertificateFilePath())) {
+            throw new RuntimeException("请配置微信平台证书路径");
+        }
+        if (Objects.isNull(wxApiV3Config.getMchPrivateKeyFilePath())) {
+            throw new RuntimeException("请配置私钥文件路径");
+        }
         try {
-            if (Objects.isNull(wxApiV3Config)) {
-                throw new RuntimeException("wxApiV3Config配置为空");
-            }
-            if (Objects.isNull(wxApiV3Config.getMchId())) {
-                throw new RuntimeException("请配置商户号");
-            }
-            if (Objects.isNull(wxApiV3Config.getMchSerialNo())) {
-                throw new RuntimeException("请配置证书序列号");
-            }
-            if (Objects.isNull(wxApiV3Config.getApiV3Key())) {
-                throw new RuntimeException("请配置ApiV3key");
-            }
-            if (Objects.isNull(wxApiV3Config.getWeChatPayCertificateFilePath())) {
-                throw new RuntimeException("请配置微信平台证书路径");
-            }
-            if (Objects.isNull(wxApiV3Config.getMchPrivateKeyFilePath())) {
-                throw new RuntimeException("请配置私钥文件路径");
-            }
             this.certificate = PemUtil.loadCertificate(new FileInputStream(new File(wxApiV3Config.getWeChatPayCertificateFilePath())));
             this.privateKey = PemUtil.loadPrivateKey(new FileInputStream(new File(wxApiV3Config.getMchPrivateKeyFilePath())));
             verifier = new AutoUpdateCertificatesVerifier(
-                    new WechatPay2Credentials(wxApiV3Config.getMchId(), new PrivateKeySigner(wxApiV3Config.getMchSerialNo(), this.privateKey)),
+                    new WechatPay2Credentials(wxApiV3Config.getSpMchId(), new PrivateKeySigner(wxApiV3Config.getMchSerialNo(), this.privateKey)),
                     wxApiV3Config.getApiV3Key().getBytes("utf-8"));
             WechatPayHttpClientBuilder builder = WechatPayHttpClientBuilder.create()
-                    .withMerchant(wxApiV3Config.getMchId(), wxApiV3Config.getMchSerialNo(), this.privateKey)
+                    .withMerchant(wxApiV3Config.getSpMchId(), wxApiV3Config.getMchSerialNo(), this.privateKey)
                     .withValidator(new WechatPay2Validator(verifier));
             // 通过WechatPayHttpClientBuilder构造的HttpClient，会自动的处理签名和验签，并进行证书自动更新
             this.httpClient = builder.build();
@@ -299,7 +275,6 @@ public class ApiV3ServiceImpl implements ApiV3Service {
             e.printStackTrace();
         }
     }
-
 
 
 }

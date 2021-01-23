@@ -1,4 +1,4 @@
-package com.wechat.pay.v3.file;
+package com.wechat.pay.v3.test;
 
 import com.wechat.pay.v3.applyment.bean.enumbean.SalesScenesType;
 import com.wechat.pay.v3.applyment.bean.enumbean.SubjectType;
@@ -6,9 +6,9 @@ import com.wechat.pay.v3.applyment.bean.enumbean.WxIdDocType;
 import com.wechat.pay.v3.applyment.bean.info.*;
 import com.wechat.pay.v3.applyment.bean.result.ApplymentStatusResult;
 import com.wechat.pay.v3.applyment.bean.result.BankAccountResult;
-import com.wechat.pay.v3.applyment.factory.ApiV3ServiceFactory;
-import com.wechat.pay.v3.applyment.config.WxApiV3Config;
-import com.wechat.pay.v3.applyment.service.ApiV3Service;
+import com.wechat.pay.factory.ApiV3ServiceFactory;
+import com.wechat.pay.v3.config.WxApiV3Config;
+import com.wechat.pay.v3.applyment.service.ApplymentService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ import java.util.Map;
  * @since 1.0
  */
 
-public class WxApiV3Test {
+public class ApplymentServiceTest {
 
     private WxApiV3Config wxApiV3Config;
 
@@ -30,11 +30,11 @@ public class WxApiV3Test {
     public void setWxConfig() {
         this.wxApiV3Config = new WxApiV3Config();
         //设置商户号
-        wxApiV3Config.setMchId("1602189359");
+        wxApiV3Config.setSpMchId("1602189368");
         //设置apiV3key
-        wxApiV3Config.setApiV3Key("sdfdgdfbdfvvdgs24365cdsgsdg325sg");
+        wxApiV3Config.setApiV3Key("sdfdgdfbdfvdgs24365cdsgsdg325gs");
         //设置商户证书序列号
-        wxApiV3Config.setMchSerialNo("4FE3502F2FE44A01D2040B5E0E5A6474A2F29B87");
+        wxApiV3Config.setMchSerialNo("4FE3502F2FE44A01D2040B5E05A6474A2F29B77");
         //设置私钥文件路径
         wxApiV3Config.setMchPrivateKeyFilePath("D:/Desktop/apiclient_key.pem");
         //设置平台证书文件路径
@@ -99,7 +99,7 @@ public class WxApiV3Test {
         salesInfo.setSalesScenesType(Arrays.asList(SalesScenesType.SALES_SCENES_WEB));
 
         WebInfo webInfo = new WebInfo();
-        webInfo.setDomain("");
+        webInfo.setDomain("http://yaojie.");
         salesInfo.setWebInfo(webInfo);
         businessInfo.setSalesInfo(salesInfo);
         applymentInfo.setBusinessInfo(businessInfo);
@@ -125,7 +125,7 @@ public class WxApiV3Test {
     @Test
     public void applymentTest() throws Exception {
         ApplymentInfo applymentInfo = creatInfo();
-        ApiV3Service service = ApiV3ServiceFactory.getApiV3Service(wxApiV3Config);
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
         Map<String, String> map = service.applyment(applymentInfo);
         System.out.println(map);
     }
@@ -139,7 +139,7 @@ public class WxApiV3Test {
     @Test
     public void applymentStatusTest() throws Exception {
         String s = "test";
-        ApiV3Service service = ApiV3ServiceFactory.getApiV3Service(wxApiV3Config);
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
         ApplymentStatusResult applymentStatusResult = service.applymentStatus(s);
         System.out.println(applymentStatusResult.toString());
     }
@@ -152,8 +152,8 @@ public class WxApiV3Test {
      */
     @Test
     public void changeSubBankTest() throws Exception {
-        String s = "1602952973";
-        ApiV3Service service = ApiV3ServiceFactory.getApiV3Service(wxApiV3Config);
+        String s = "160295293";
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
         BankAccountInfo bankAccountInfo = new BankAccountInfo();
         boolean b = service.changeSubBank(s, bankAccountInfo);
         System.out.println(b);
@@ -167,8 +167,8 @@ public class WxApiV3Test {
      */
     @Test
     public void querySubMchTest() throws Exception {
-        String s = "1602952973";
-        ApiV3Service service = ApiV3ServiceFactory.getApiV3Service(wxApiV3Config);
+        String s = "160295293";
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
         BankAccountResult bankAccountResult = service.querySubMch(s);
         System.out.println(bankAccountResult);
     }
@@ -186,7 +186,7 @@ public class WxApiV3Test {
      */
     @Test
     public void fileUploadTest() throws Exception {
-        ApiV3Service service = ApiV3ServiceFactory.getApiV3Service(wxApiV3Config);
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
         Map<String, String> map = service.upload(filePath);
         System.out.println(map);
     }
