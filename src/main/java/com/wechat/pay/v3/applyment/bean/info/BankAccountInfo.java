@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 import com.wechat.pay.v3.applyment.bean.enumbean.BankAccountType;
@@ -19,6 +20,7 @@ public class BankAccountInfo {
      * 账户类型
      */
     @JsonProperty("bank_account_type")
+    @JSONField(name = "bank_account_type")
     private BankAccountType bankAccountType;
 
     /**
@@ -27,6 +29,7 @@ public class BankAccountInfo {
      */
     @SpecEncrypt
     @JsonProperty("account_name")
+    @JSONField(name = "account_name")
     private String accountName;
 
     /**
@@ -34,6 +37,7 @@ public class BankAccountInfo {
      * 开户银行
      */
     @JsonProperty("account_bank")
+    @JSONField(name = "account_bank")
     private String accountBank;
 
     /**
@@ -41,6 +45,7 @@ public class BankAccountInfo {
      * 开户银行省市编码
      */
     @JsonProperty("bank_address_code")
+    @JSONField(name = "bank_address_code")
     private String bankAddressCode;
 
     /**
@@ -48,6 +53,7 @@ public class BankAccountInfo {
      * 开户银行联行号
      */
     @JsonProperty("bank_branch_id")
+    @JSONField(name = "bank_branch_id")
     private String bankBranchId;
 
     /**
@@ -55,6 +61,7 @@ public class BankAccountInfo {
      * 开户银行全称（含支行）
      */
     @JsonProperty("bank_name")
+    @JSONField(name = "bank_name")
     private String bankName;
 
     /**
@@ -63,6 +70,7 @@ public class BankAccountInfo {
      */
     @SpecEncrypt
     @JsonProperty("account_number")
+    @JSONField(name = "account_number")
     private String accountNumber;
 
     public BankAccountType getBankAccountType() {

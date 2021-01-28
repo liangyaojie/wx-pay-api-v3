@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 import com.wechat.pay.v3.applyment.bean.enumbean.WxIdDocType;
@@ -19,6 +20,7 @@ public class IdentityInfo {
      * 证件类型
      */
     @JsonProperty("id_doc_type")
+    @JSONField(name = "id_doc_type")
     private WxIdDocType idDocType;
 
     /**
@@ -28,6 +30,7 @@ public class IdentityInfo {
      */
     @SpecEncrypt
     @JsonProperty("id_card_info")
+    @JSONField(name = "id_card_info")
     private IdCardInfo idCardInfo;
     /**
      * 非必填
@@ -36,6 +39,7 @@ public class IdentityInfo {
      */
     @SpecEncrypt
     @JsonProperty("id_doc_info")
+    @JSONField(name = "id_doc_info")
     private IdDocInfo idDocInfo;
 
     /**
@@ -43,6 +47,7 @@ public class IdentityInfo {
      * 经营者/法人是否为受益人
      */
     @JsonProperty("owner")
+    @JSONField(name = "owner")
     private boolean owner = true;
 
     public WxIdDocType getIdDocType() {

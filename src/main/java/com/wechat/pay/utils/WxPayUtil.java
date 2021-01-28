@@ -103,7 +103,7 @@ public class WxPayUtil {
 
 
     /**
-     * 获取自动更新验证签名器httpClient
+     * 服务商获取自动更新验证签名器httpClient
      */
     public void builderPartnerHttpClient(WxPartnerApiV3Config wxPartnerApiV3Config) {
         try {

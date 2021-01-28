@@ -11,6 +11,8 @@ import com.wechat.pay.v3.transactions.service.impl.WxPayPartnerV3ApiImpl;
 import com.wechat.pay.v3.transactions.service.partner.WxPayPartnerV3Api;
 
 /**
+ * 微信ApiV3服务工厂
+ *
  * @author LYJ
  * @date 2021/1/19 14:56
  * @since 1.0
@@ -63,7 +65,7 @@ public class ApiV3ServiceFactory {
         synchronized (ApiV3ServiceFactory.class) {
             if (wxPayPartnerV3Api == null) {
                 wxPayUtil = new WxPayUtil();
-                wxPayPartnerV3Api = new WxPayPartnerV3ApiImpl(wxPartnerApiV3Config,wxPayUtil);
+                wxPayPartnerV3Api = new WxPayPartnerV3ApiImpl(wxPartnerApiV3Config, wxPayUtil);
 
             }
         }

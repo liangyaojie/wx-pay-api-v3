@@ -1,5 +1,8 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -15,18 +18,24 @@ public class MpInfo {
      * 服务商公众号APPID
      * 与商家公众号appId二选一
      */
+    @JsonProperty("mp_appid")
+    @JSONField(name = "mp_appid")
     private String mpAppId;
 
     /**
      * 商家公众号APPID
      * 与服务商公众号appId二选一
      */
+    @JsonProperty("mp_sub_appid")
+    @JSONField(name = "mp_sub_appid")
     private String mpSubAppId;
 
     /**
      * 条件选填
      * 公众号页面截图
      */
+    @JsonProperty("mp_pics")
+    @JSONField(name = "mp_pics")
     private List<String> mpPics;
 
     public String getMpAppId() {

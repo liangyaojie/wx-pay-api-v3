@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -17,6 +18,7 @@ public class BusinessInfo {
      * 商户简称
      */
     @JsonProperty("merchant_shortname")
+    @JSONField(name = "merchant_shortname")
     private String merchantShortName;
 
     /**
@@ -24,6 +26,7 @@ public class BusinessInfo {
      * 客服电话
      */
     @JsonProperty("service_phone")
+    @JSONField(name = "service_phone")
     private String servicePhone;
 
     /**
@@ -31,6 +34,7 @@ public class BusinessInfo {
      * 经营场景
      */
     @JsonProperty("sales_info")
+    @JSONField(name = "sales_info")
     private SalesInfo salesInfo;
 
     public String getMerchantShortName() {

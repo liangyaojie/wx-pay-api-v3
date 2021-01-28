@@ -1,5 +1,8 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -14,18 +17,24 @@ public class MiniProgramInfo {
      * 服务商小程序APPID
      * 与商家小程序appId二选一
      */
+    @JsonProperty("mini_program_appid")
+    @JSONField(name = "mini_program_appid")
     private String miniProgramAppId;
 
     /**
      * 商家小程序APPID
      * 与服务商小程序appId二选一
      */
+    @JsonProperty("mini_program_sub_appid")
+    @JSONField(name = "mini_program_sub_appid")
     private String miniProgramSubAppId;
 
     /**
      * 条件选填
      * 小程序截图
      */
+    @JsonProperty("mini_program_pics")
+    @JSONField(name = "mini_program_pics")
     private List<String> miniProgramPics;
 
     public String getMiniProgramAppId() {

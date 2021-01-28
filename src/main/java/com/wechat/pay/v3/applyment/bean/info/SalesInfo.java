@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.bean.enumbean.SalesScenesType;
 
@@ -20,6 +21,7 @@ public class SalesInfo {
      * 经营场景类型
      */
     @JsonProperty("sales_scenes_type")
+    @JSONField(name = "sales_scenes_type")
     private List<SalesScenesType> salesScenesType;
 
 
@@ -28,6 +30,7 @@ public class SalesInfo {
      * 线下门店场景
      */
     @JsonProperty("biz_store_info")
+    @JSONField(name = "biz_store_info")
     private BizStoreInfo bizStoreInfo;
 
     /**
@@ -35,6 +38,7 @@ public class SalesInfo {
      * 公众号场景
      */
     @JsonProperty("mp_info")
+    @JSONField(name = "mp_info")
     private MpInfo mpInfo;
 
     /**
@@ -42,6 +46,7 @@ public class SalesInfo {
      * 小程序场景
      */
     @JsonProperty("mini_program_info")
+    @JSONField(name = "mini_program_info")
     private MiniProgramInfo miniProgramInfo;
 
     /**
@@ -49,6 +54,7 @@ public class SalesInfo {
      * APP场景
      */
     @JsonProperty("app_info")
+    @JSONField(name = "app_info")
     private WxAppInfo appInfo;
 
     /**
@@ -56,6 +62,7 @@ public class SalesInfo {
      * 互联网网站场景
      */
     @JsonProperty("web_info")
+    @JSONField(name = "web_info")
     private WebInfo webInfo;
 
     /**
@@ -63,6 +70,7 @@ public class SalesInfo {
      * 企业微信场景
      */
     @JsonProperty("wework_info")
+    @JSONField(name = "wework_info")
     private WeWorkInfo weworkInfo;
 
     public List<SalesScenesType> getSalesScenesType() {

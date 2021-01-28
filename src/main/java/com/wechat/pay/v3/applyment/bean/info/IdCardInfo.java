@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 
@@ -20,6 +21,7 @@ public class IdCardInfo {
      * 示例值：jTpGmxUX3FBWVQ5NJTZvlKX_gdU4cRz7z5NxpnFuAxhBTEO_PvWkfSCJ3zVIn001D8daLC-ehEuo0BJqRTvDujqhThn4ReFxikqJ5YW6zFQ
      */
     @JsonProperty("id_card_copy")
+    @JSONField(name = "id_card_copy")
     private String idCardCopy;
 
     /**
@@ -29,6 +31,7 @@ public class IdCardInfo {
      * 示例值： 47ZC6GC-vnrbEny__Ie_An5-tCpqxucuxi-vByf3Gjm7KE53JXvGy9tqZm2XAUf-4KGprrKhpVBDIUv0OF4wFNIO4kqg05InE4d2I6_H7I4
      */
     @JsonProperty("id_card_national")
+    @JSONField(name = "id_card_national")
     private String idCardNational;
 
 
@@ -40,6 +43,7 @@ public class IdCardInfo {
      */
     @SpecEncrypt
     @JsonProperty("id_card_name")
+    @JSONField(name = "id_card_name")
     private String idCardName;
 
     /**
@@ -50,6 +54,7 @@ public class IdCardInfo {
      */
     @SpecEncrypt
     @JsonProperty("id_card_number")
+    @JSONField(name = "id_card_number")
     private String idCardNumber;
 
     /**
@@ -58,6 +63,7 @@ public class IdCardInfo {
      * 示例值：2026-06-06
      */
     @JsonProperty("card_period_begin")
+    @JSONField(name = "card_period_begin")
     private String cardPeriodBegin;
 
     /**
@@ -66,6 +72,7 @@ public class IdCardInfo {
      * 示例值：2026-06-06
      */
     @JsonProperty("card_period_end")
+    @JSONField(name = "card_period_end")
     private String cardPeriodEnd;
 
     public String getIdCardCopy() {

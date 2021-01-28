@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 import com.wechat.pay.v3.applyment.bean.enumbean.SubjectType;
@@ -18,6 +19,7 @@ public class SubjectInfo {
      * 必填
      */
     @JsonProperty("subject_type")
+    @JSONField(name = "subject_type")
     private SubjectType subjectType;
 
     /**
@@ -27,6 +29,7 @@ public class SubjectInfo {
      * 条件选填
      */
     @JsonProperty("business_license_info")
+    @JSONField(name = "business_license_info")
     private BusinessLicenseInfo businessLicenseInfo;
     /**
      * 登记证书
@@ -34,6 +37,7 @@ public class SubjectInfo {
      */
     @SpecEncrypt
     @JsonProperty("certificate_info")
+    @JSONField(name = "certificate_info")
     private CertificateInfo certificateInfo;
 
 
@@ -42,6 +46,7 @@ public class SubjectInfo {
      * 条件选填
      */
     @JsonProperty("organization_info")
+    @JSONField(name = "organization_info")
     private OrganizationInfo organizationInfo;
 
 
@@ -54,6 +59,7 @@ public class SubjectInfo {
      * 条件选填
      */
     @JsonProperty("certificate_letter_copy")
+    @JSONField(name = "certificate_letter_copy")
     private String certificateLetterCopy;
 
     /**
@@ -62,6 +68,7 @@ public class SubjectInfo {
      */
     @SpecEncrypt
     @JsonProperty("identity_info")
+    @JSONField(name = "identity_info")
     private IdentityInfo identityInfo;
 
 
@@ -71,6 +78,7 @@ public class SubjectInfo {
      */
     @SpecEncrypt
     @JsonProperty("ubo_info")
+    @JSONField(name = "ubo_info")
     private UboInfo uboInfo;
 
     public SubjectType getSubjectType() {

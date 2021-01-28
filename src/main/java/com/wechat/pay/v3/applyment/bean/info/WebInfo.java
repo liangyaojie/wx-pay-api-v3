@@ -1,5 +1,8 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * 互联网网站场景
  *
@@ -13,18 +16,24 @@ public class WebInfo {
      * 必填
      * 互联网网站域名
      */
+    @JsonProperty("domain")
+    @JSONField(name = "domain")
     private String domain;
 
     /**
      * 非必填
      * 网站授权函
      */
+    @JsonProperty("web_authorisation")
+    @JSONField(name = "web_authorisation")
     private String webAuthorisation;
 
     /**
      * 非必填
      * 互联网网站对应的商家APPID
      */
+    @JsonProperty("web_appid")
+    @JSONField(name = "web_appid")
     private String webAppId;
 
     public String getDomain() {

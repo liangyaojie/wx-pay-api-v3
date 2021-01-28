@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 
@@ -19,6 +20,7 @@ public class ApplymentInfo {
      * 3、若申请单被驳回，可填写相同的“业务申请编号”，即可覆盖修改原申请单信息。
      */
     @JsonProperty("business_code")
+    @JSONField(name = "business_code")
     private String businessCode;
 
     /**
@@ -28,6 +30,7 @@ public class ApplymentInfo {
      */
     @SpecEncrypt
     @JsonProperty("contact_info")
+    @JSONField(name = "contact_info")
     private ContactInfo contactInfo;
 
     /**
@@ -36,6 +39,7 @@ public class ApplymentInfo {
      */
     @SpecEncrypt
     @JsonProperty("subject_info")
+    @JSONField(name = "subject_info")
     private SubjectInfo subjectInfo;
 
     /**
@@ -43,12 +47,14 @@ public class ApplymentInfo {
      * 经营资料
      */
     @JsonProperty("business_info")
+    @JSONField(name = "business_info")
     private BusinessInfo businessInfo;
     /**
      * 必填
      * 结算规则
      */
     @JsonProperty("settlement_info")
+    @JSONField(name = "settlement_info")
     private SettlementInfo settlementInfo;
 
     /**
@@ -57,6 +63,7 @@ public class ApplymentInfo {
      */
     @SpecEncrypt
     @JsonProperty("bank_account_info")
+    @JSONField(name = "bank_account_info")
     private BankAccountInfo bankAccountInfo;
 
     /**
@@ -64,6 +71,7 @@ public class ApplymentInfo {
      * 补充材料
      */
     @JsonProperty("addition_info")
+    @JSONField(name = "addition_info")
     private AdditionInfo additionInfo;
 
     public AdditionInfo getAdditionInfo() {

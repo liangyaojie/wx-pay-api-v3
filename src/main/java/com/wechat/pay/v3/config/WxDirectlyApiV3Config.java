@@ -1,6 +1,8 @@
 package com.wechat.pay.v3.config;
 
 /**
+ * 直连商户微信支付信息配置
+ *
  * @author LYJ
  * @date 2021/1/28 9:15
  * @since 1.0

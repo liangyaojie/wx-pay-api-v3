@@ -1,5 +1,8 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -15,6 +18,8 @@ public class WxAppInfo {
      * 服务商应用APPID
      * 与商家应用appId二选一
      */
+    @JsonProperty("app_appid")
+    @JSONField(name = "app_appid")
     private String appAppId;
 
 
@@ -22,6 +27,8 @@ public class WxAppInfo {
      * 商家应用APPID
      * 与服务商应用appId二选一
      */
+    @JsonProperty("app_sub_appid")
+    @JSONField(name = "app_sub_appid")
     private String appSubAppId;
 
 
@@ -32,6 +39,8 @@ public class WxAppInfo {
      * 2、请填写通过《图片上传API》预先上传图片生成好的MediaID。
      * 示例值：0P3ng6KTIW4-Q_l2FjmFJBZR9FwczhJehHhAZN6BKXQPcs-VvdSo
      */
+    @JsonProperty("app_pics")
+    @JSONField(name = "app_pics")
     private List<String> appPics;
 
     public String getAppAppId() {

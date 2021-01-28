@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 
@@ -18,6 +19,7 @@ public class ContactInfo {
      */
     @SpecEncrypt
     @JsonProperty("contact_name")
+    @JSONField(name = "contact_name")
     private String contactName;
     /**
      * 超级管理员身份证件号码
@@ -25,12 +27,14 @@ public class ContactInfo {
      */
     @SpecEncrypt
     @JsonProperty("contact_id_number")
+    @JSONField(name = "contact_id_number")
     private String contactIdNumber;
     /**
      * 超级管理员微信openid
      * 与contactIdNumber二选一
      */
     @JsonProperty("openid")
+    @JSONField(name = "openid")
     private String openId;
     /**
      * 联系手机
@@ -38,6 +42,7 @@ public class ContactInfo {
      */
     @SpecEncrypt
     @JsonProperty("mobile_phone")
+    @JSONField(name = "mobile_phone")
     private String mobilePhone;
     /**
      * 联系邮箱
@@ -45,6 +50,7 @@ public class ContactInfo {
      */
     @SpecEncrypt
     @JsonProperty("contact_email")
+    @JSONField(name = "contact_email")
     private String contactEmail;
 
     public String getContactName() {

@@ -1,6 +1,8 @@
 package com.wechat.pay.constant;
 
 /**
+ * 微信常量
+ *
  * @author LYJ
  * @date 2021/1/26 11:14
  * @since 1.0
@@ -15,7 +17,8 @@ public interface WxConstant {
         public static final String TIMESTAMP = "timestamp";
         public static final String PAY_SIGN = "paySign";
     }
-    class JsApi{
+
+    class JsApi {
         public static final String APP_ID = "appId";
         public static final String TIMESTAMP = "timeStamp";
         public static final String NONCE_STR = "nonceStr";

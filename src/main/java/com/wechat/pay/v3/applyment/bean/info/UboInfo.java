@@ -1,5 +1,7 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wechat.pay.v3.applyment.anno.SpecEncrypt;
 import com.wechat.pay.v3.applyment.bean.enumbean.WxIdDocType;
 
@@ -17,18 +19,24 @@ public class UboInfo {
      * 必填
      * 证件类型
      */
+    @JsonProperty("id_type")
+    @JSONField(name = "id_type")
     private WxIdDocType idType;
 
     /**
      * 条件选填
      * 身份证人像面照片
      */
+    @JsonProperty("id_card_copy")
+    @JSONField(name = "id_card_copy")
     private String idCardCopy;
 
     /**
      * 条件选填
      * 身份证国徽面照片
      */
+    @JsonProperty("id_card_national")
+    @JSONField(name = "id_card_national")
     private String idCardNational;
 
 
@@ -36,6 +44,8 @@ public class UboInfo {
      * 条件选填
      * 证件照片
      */
+    @JsonProperty("id_doc_copy")
+    @JSONField(name = "id_doc_copy")
     private String idDocCopy;
 
     /**
@@ -43,6 +53,8 @@ public class UboInfo {
      * 受益人姓名
      */
     @SpecEncrypt
+    @JsonProperty("name")
+    @JSONField(name = "name")
     private String name;
 
     /**
@@ -51,6 +63,8 @@ public class UboInfo {
      * 示例值：AOZdYGISxo4y44/Ug4P4TG5xzchG/5IL9DBd+Z0zZXkw==
      */
     @SpecEncrypt
+    @JsonProperty("id_number")
+    @JSONField(name = "id_number")
     private String idCardNumber;
 
     /**
@@ -58,6 +72,8 @@ public class UboInfo {
      * 证件有效期开始时间
      * 示例值：2019-06-06
      */
+    @JsonProperty("id_period_begin")
+    @JSONField(name = "id_period_begin")
     private String idPeriodBegin;
 
     /**
@@ -65,6 +81,8 @@ public class UboInfo {
      * 证件有效期结束时间
      * 示例值：2026-06-06
      */
+    @JsonProperty("id_period_end")
+    @JSONField(name = "id_period_end")
     private String idPeriodEnd;
 
     public WxIdDocType getIdType() {

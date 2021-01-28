@@ -1,5 +1,8 @@
 package com.wechat.pay.v3.applyment.bean.info;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -16,12 +19,16 @@ public class WeWorkInfo {
      * 必填
      * 商家企业微信CorpID
      */
+    @JsonProperty("sub_corp_id")
+    @JSONField(name = "sub_corp_id")
     private String subCorpId;
 
     /**
      * 必填
      * 企业微信页面截图
      */
+    @JsonProperty("wework_pics")
+    @JSONField(name = "wework_pics")
     private List<String> weworkPics;
 
 
