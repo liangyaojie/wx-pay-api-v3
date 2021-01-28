@@ -29,6 +29,15 @@ public class WxDirectlyRequest extends WxBaseRequest {
     @JSONField(name = "mchid")
     private String mchId;
 
+
+    /**
+     * 支付者
+     * 必填：是
+     */
+    @JsonProperty("payer")
+    @JSONField(name = "payer")
+    private WxDirectlyPayer payer;
+
     public String getAppId() {
         return appId;
     }
@@ -45,11 +54,20 @@ public class WxDirectlyRequest extends WxBaseRequest {
         this.mchId = mchId;
     }
 
+    public WxDirectlyPayer getPayer() {
+        return payer;
+    }
+
+    public void setPayer(WxDirectlyPayer payer) {
+        this.payer = payer;
+    }
+
     @Override
     public String toString() {
         return "WxDirectlyRequest{" +
                 "appId='" + appId + '\'' +
                 ", mchId='" + mchId + '\'' +
+                ", payer=" + payer +
                 '}';
     }
 }

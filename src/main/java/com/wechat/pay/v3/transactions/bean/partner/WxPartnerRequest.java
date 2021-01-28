@@ -47,6 +47,17 @@ public class WxPartnerRequest extends WxBaseRequest {
     @JSONField(name = "sub_mchid")
     private String subMchId;
 
+
+
+    /**
+     * 支付者
+     * 必填：是
+     */
+    @JsonProperty("payer")
+    @JSONField(name = "payer")
+    private WxPartnerPayer payer;
+
+
     public String getSpAppId() {
         return spAppId;
     }
@@ -79,6 +90,14 @@ public class WxPartnerRequest extends WxBaseRequest {
         this.subMchId = subMchId;
     }
 
+    public WxPartnerPayer getPayer() {
+        return payer;
+    }
+
+    public void setPayer(WxPartnerPayer payer) {
+        this.payer = payer;
+    }
+
     @Override
     public String toString() {
         return "WxPartnerRequest{" +
@@ -86,6 +105,7 @@ public class WxPartnerRequest extends WxBaseRequest {
                 ", spMchId='" + spMchId + '\'' +
                 ", subAppId='" + subAppId + '\'' +
                 ", subMchId='" + subMchId + '\'' +
+                ", payer=" + payer +
                 '}';
     }
 }

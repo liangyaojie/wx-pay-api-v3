@@ -1,0 +1,219 @@
+package com.wechat.pay.v3.test;
+
+
+import com.wechat.pay.factory.ApiV3ServiceFactory;
+import com.wechat.pay.utils.sign.WxApiV3SignUtils;
+import com.wechat.pay.v3.config.WxDirectlyApiV3Config;
+import com.wechat.pay.v3.transactions.bean.base.WxAmount;
+import com.wechat.pay.v3.transactions.bean.directly.WxDirectlyPayer;
+import com.wechat.pay.v3.transactions.bean.directly.WxDirectlyRequest;
+import com.wechat.pay.v3.transactions.service.partner.WxPayPartnerV3Api;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Map;
+
+/**
+ * 直连商户接口测试
+ *
+ * @author LYJ
+ * @date 2021/1/28 10:35
+ * @since 1.0
+ */
+public class WxDirectlyApiVTest {
+
+
+    private WxDirectlyApiV3Config wxDirectlyApiV3Config;
+
+    @Before
+    public void setWxConfig() {
+
+        this.wxDirectlyApiV3Config = new WxDirectlyApiV3Config();
+
+        //设置公众号ID
+        wxDirectlyApiV3Config.setAppId("wxbe55f9bdd");
+        //设置商户号
+        wxDirectlyApiV3Config.setMchId("16029529");
+        //设置apiV3key
+        wxDirectlyApiV3Config.setApiV3Key("sdfdgdfbdfvvdgs243625gs");
+        //设置商户证书序列号
+        wxDirectlyApiV3Config.setMchSerialNo("4FE3502F2FE44A40B5E0E5A6474A2F29B77");
+        //设置私钥文件路径
+        wxDirectlyApiV3Config.setMchPrivateKeyFilePath("D:/Desktop/apiclient_key.pem");
+        //设置平台证书文件路径
+        wxDirectlyApiV3Config.setWeChatPayCertificateFilePath("D:/wx/wechatpay_288DBF1A320CE05945995870D22D8B81CC43C18E.pem");
+        wxDirectlyApiV3Config.setNotifyUrl("http://v1.dotcer/pay/wx/notify");
+    }
+
+
+    /**
+     * APP下单测试
+     */
+    @Test
+    public void payByAppTest() {
+        Map<String, String> map = ApiV3ServiceFactory.getWxPayDirectlyV3Api(wxDirectlyApiV3Config).payByApp(creatWxDirectlyRequestApp());
+        System.out.println(map);
+    }
+
+    /**
+     * JSAPI/小程序下单
+     */
+    @Test
+    public void payByJsApiTest() {
+        Map<String, String> map = ApiV3ServiceFactory.getWxPayDirectlyV3Api(wxDirectlyApiV3Config).payByJsApi(creatWxDirectlyRequest());
+        System.out.println(map);
+    }
+
+    /**
+     * Native下单测试
+     */
+    @Test
+    public void payByNativeTest() {
+        Map<String, String> map = ApiV3ServiceFactory.getWxPayDirectlyV3Api(wxDirectlyApiV3Config).payByNative(creatWxDirectlyRequest());
+        System.out.println(map);
+    }
+
+    /**
+     * H5下单测试
+     */
+    @Test
+    public void payByH5Test() {
+        Map<String, String> map = ApiV3ServiceFactory.getWxPayDirectlyV3Api(wxDirectlyApiV3Config).payByH5(creatWxDirectlyRequestH5());
+        System.out.println(map);
+    }
+
+    /**
+     * 查询订单测试
+     */
+    @Test
+    public void queryTransactionsTest() {
+    }
+
+
+    /**
+     * 关闭订单测试
+     *
+     * @throws Exception
+     */
+    @Test
+    public void closeTransactionsTest() throws Exception {
+        ApiV3ServiceFactory.getWxPayDirectlyV3Api(wxDirectlyApiV3Config).closeTransactions("");
+    }
+
+
+    /**
+     * 创建直连商户支付请求参数
+     *
+     * @return
+     */
+    WxDirectlyRequest creatWxDirectlyRequest() {
+        WxDirectlyRequest wxRequest = new WxDirectlyRequest();
+        wxRequest.setAppId(wxDirectlyApiV3Config.getAppId());
+        wxRequest.setMchId(wxDirectlyApiV3Config.getMchId());
+        wxRequest.setAttach("接口测试");
+        wxRequest.setGoodsTag("WXG");
+        wxRequest.setTimeExpire("2021-01-22T15:29:35+08:00");
+        wxRequest.setDescription("apiV3接口测试");
+        wxRequest.setOutTradeNo("apiV3test001");
+        wxRequest.setNotifyUrl(wxDirectlyApiV3Config.getNotifyUrl());
+        WxAmount wxAmount = new WxAmount();
+        wxAmount.setTotal(1);
+        wxAmount.setCurrency("CNY");
+        wxRequest.setAmount(wxAmount);
+        System.out.println(wxRequest);
+        return wxRequest;
+    }
+
+
+    /**
+     * 创建直连商户app支付请求参数
+     *
+     * @return
+     */
+    WxDirectlyRequest creatWxDirectlyRequestApp() {
+        WxDirectlyRequest wxRequest = new WxDirectlyRequest();
+        wxRequest.setAppId(wxDirectlyApiV3Config.getAppId());
+        wxRequest.setMchId(wxDirectlyApiV3Config.getMchId());
+        wxRequest.setAttach("接口测试");
+        wxRequest.setGoodsTag("WXG");
+        wxRequest.setTimeExpire("2021-01-22T15:29:35+08:00");
+        wxRequest.setDescription("apiV3接口测试");
+        wxRequest.setOutTradeNo("apiV3test001");
+        wxRequest.setNotifyUrl(wxDirectlyApiV3Config.getNotifyUrl());
+        WxAmount wxAmount = new WxAmount();
+        wxAmount.setTotal(1);
+        wxAmount.setCurrency("CNY");
+        wxRequest.setAmount(wxAmount);
+        System.out.println(wxRequest);
+        return wxRequest;
+    }
+
+
+
+    /**
+     * 创建直连商户H5支付请求参数
+     *
+     * @return
+     */
+    WxDirectlyRequest creatWxDirectlyRequestH5() {
+        WxDirectlyRequest wxRequest = new WxDirectlyRequest();
+        wxRequest.setAppId(wxDirectlyApiV3Config.getAppId());
+        wxRequest.setMchId(wxDirectlyApiV3Config.getMchId());
+        wxRequest.setAttach("接口测试");
+        wxRequest.setGoodsTag("WXG");
+        wxRequest.setTimeExpire("2021-01-22T15:29:35+08:00");
+        wxRequest.setDescription("apiV3接口测试");
+        wxRequest.setOutTradeNo("apiV3test001");
+        wxRequest.setNotifyUrl(wxDirectlyApiV3Config.getNotifyUrl());
+        WxAmount wxAmount = new WxAmount();
+        wxAmount.setTotal(1);
+        wxAmount.setCurrency("CNY");
+        wxRequest.setAmount(wxAmount);
+        WxDirectlyPayer wxDirectlyPayer = new WxDirectlyPayer();
+        wxDirectlyPayer.setOpenId("oy6W_w9plkaBgFJuMmyuFRQtmIhI");
+        wxRequest.setPayer(wxDirectlyPayer);
+        System.out.println(wxRequest);
+        return wxRequest;
+    }
+    /**
+     * 创建直连商户JsApi支付请求参数
+     *
+     * @return
+     */
+    WxDirectlyRequest creatWxDirectlyRequestJsApi() {
+        WxDirectlyRequest wxRequest = new WxDirectlyRequest();
+        wxRequest.setAppId(wxDirectlyApiV3Config.getAppId());
+        wxRequest.setMchId(wxDirectlyApiV3Config.getMchId());
+        wxRequest.setAttach("接口测试");
+        wxRequest.setGoodsTag("WXG");
+        wxRequest.setTimeExpire("2021-01-22T15:29:35+08:00");
+        wxRequest.setDescription("apiV3接口测试");
+        wxRequest.setOutTradeNo("apiV3test001");
+        wxRequest.setNotifyUrl(wxDirectlyApiV3Config.getNotifyUrl());
+        WxAmount wxAmount = new WxAmount();
+        wxAmount.setTotal(1);
+        wxAmount.setCurrency("CNY");
+        wxRequest.setAmount(wxAmount);
+        WxDirectlyPayer wxDirectlyPayer = new WxDirectlyPayer();
+        wxDirectlyPayer.setOpenId("oy6W_w9plkaBgFJuMmyuFRQtmIhI");
+        wxRequest.setPayer(wxDirectlyPayer);
+        System.out.println(wxRequest);
+        return wxRequest;
+    }
+
+    @Test
+    public void jsApiTest() {
+        WxPayPartnerV3Api wxPayV3Api = (WxPayPartnerV3Api) ApiV3ServiceFactory.getWxPayDirectlyV3Api(wxDirectlyApiV3Config).getJsApiConfig(creatWxDirectlyRequestJsApi());
+        System.out.println(wxPayV3Api);
+    }
+
+
+    @Test
+    public void signTest() throws Exception {
+        String get = WxApiV3SignUtils.getToken("GET",
+                "https://www.baidu.com/abc", "",
+                wxDirectlyApiV3Config.getMchId(), WxApiV3SignUtils.getPrivateKey(wxDirectlyApiV3Config.getMchPrivateKeyFilePath()),
+                wxDirectlyApiV3Config.getMchSerialNo());
+        System.out.println(get);
+    }
+}

@@ -6,6 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 自定义敏感信息字段注解
+ *
  * @author LYJ
  * @date 2021/1/15 13:47
  * @since 1.0

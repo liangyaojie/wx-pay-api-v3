@@ -2,27 +2,20 @@ package com.wechat.pay.v3.config;
 
 /**
  * @author LYJ
- * @date 2021/1/18 17:12
+ * @date 2021/1/28 9:15
  * @since 1.0
  */
-public class WxApiV3Config {
-    /**
-     * 服务商公众号ID
-     */
-    private String spAppId;
+public class WxDirectlyApiV3Config {
 
     /**
-     * 服务商户号
+     * 商户公众号ID
      */
-    private String spMchId;
+    private String appId;
     /**
-     * 子商户公众号ID
+     * 商户号
      */
-    private String subAppId;
-    /**
-     * 子商户号
-     */
-    private String subMchId;
+    private String mchId;
+
     /**
      * 商户证书序列号
      */
@@ -47,36 +40,20 @@ public class WxApiV3Config {
     private String notifyUrl;
 
 
-    public String getSpAppId() {
-        return spAppId;
+    public String getAppId() {
+        return appId;
     }
 
-    public void setSpAppId(String spAppId) {
-        this.spAppId = spAppId;
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 
-    public String getSpMchId() {
-        return spMchId;
+    public String getMchId() {
+        return mchId;
     }
 
-    public void setSpMchId(String spMchId) {
-        this.spMchId = spMchId;
-    }
-
-    public String getSubAppId() {
-        return subAppId;
-    }
-
-    public void setSubAppId(String subAppId) {
-        this.subAppId = subAppId;
-    }
-
-    public String getSubMchId() {
-        return subMchId;
-    }
-
-    public void setSubMchId(String subMchId) {
-        this.subMchId = subMchId;
+    public void setMchId(String mchId) {
+        this.mchId = mchId;
     }
 
     public String getMchSerialNo() {
@@ -118,4 +95,5 @@ public class WxApiV3Config {
     public void setNotifyUrl(String notifyUrl) {
         this.notifyUrl = notifyUrl;
     }
+
 }

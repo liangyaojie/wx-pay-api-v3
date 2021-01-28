@@ -83,9 +83,10 @@ public class WxBaseResult {
     private String successTime;
 
 
+
     /**
      * 支付者
-     * 必填：是
+     * 必填：否
      */
     @JsonProperty("payer")
     @JSONField(name = "payer")
@@ -180,6 +181,7 @@ public class WxBaseResult {
     public void setSuccessTime(String successTime) {
         this.successTime = successTime;
     }
+
 
     public WxPayer getPayer() {
         return payer;

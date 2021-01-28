@@ -7,7 +7,7 @@ import com.wechat.pay.v3.applyment.bean.info.*;
 import com.wechat.pay.v3.applyment.bean.result.ApplymentStatusResult;
 import com.wechat.pay.v3.applyment.bean.result.BankAccountResult;
 import com.wechat.pay.factory.ApiV3ServiceFactory;
-import com.wechat.pay.v3.config.WxApiV3Config;
+import com.wechat.pay.v3.config.WxPartnerApiV3Config;
 import com.wechat.pay.v3.applyment.service.ApplymentService;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
+ * 特约商进件接口测试
+ *
  * @author LYJ
  * @date 2021/1/15 18:35
  * @since 1.0
@@ -24,21 +26,21 @@ import java.util.Map;
 
 public class ApplymentServiceTest {
 
-    private WxApiV3Config wxApiV3Config;
+    private WxPartnerApiV3Config wxPartnerApiV3Config;
 
     @Before
     public void setWxConfig() {
-        this.wxApiV3Config = new WxApiV3Config();
+        this.wxPartnerApiV3Config = new WxPartnerApiV3Config();
         //设置商户号
-        wxApiV3Config.setSpMchId("1602189368");
+        wxPartnerApiV3Config.setSpMchId("16021893");
         //设置apiV3key
-        wxApiV3Config.setApiV3Key("sdfdgdfbdfvdgs24365cdsgsdg325gs");
+        wxPartnerApiV3Config.setApiV3Key("sdfdgdfbdfvvdgs24365cdsgsdg325");
         //设置商户证书序列号
-        wxApiV3Config.setMchSerialNo("4FE3502F2FE44A01D2040B5E05A6474A2F29B77");
+        wxPartnerApiV3Config.setMchSerialNo("4FE3502F2FE44A01D2040B5E0A6474A2F29B77");
         //设置私钥文件路径
-        wxApiV3Config.setMchPrivateKeyFilePath("D:/Desktop/apiclient_key.pem");
+        wxPartnerApiV3Config.setMchPrivateKeyFilePath("D:/Desktop/apiclient_key.pem");
         //设置平台证书文件路径
-        wxApiV3Config.setWeChatPayCertificateFilePath("D:/wx/wechatpay_288DBF1A320CE05945995870D22D8B81CC43C18E.pem");
+        wxPartnerApiV3Config.setWeChatPayCertificateFilePath("D:/wx/wechatpay_288DBF1A320CE05945995870D22D8B81CC43C18E.pem");
     }
 
     /**
@@ -99,7 +101,7 @@ public class ApplymentServiceTest {
         salesInfo.setSalesScenesType(Arrays.asList(SalesScenesType.SALES_SCENES_WEB));
 
         WebInfo webInfo = new WebInfo();
-        webInfo.setDomain("http://yaojie.");
+        webInfo.setDomain("");
         salesInfo.setWebInfo(webInfo);
         businessInfo.setSalesInfo(salesInfo);
         applymentInfo.setBusinessInfo(businessInfo);
@@ -125,7 +127,7 @@ public class ApplymentServiceTest {
     @Test
     public void applymentTest() throws Exception {
         ApplymentInfo applymentInfo = creatInfo();
-        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxPartnerApiV3Config);
         Map<String, String> map = service.applyment(applymentInfo);
         System.out.println(map);
     }
@@ -139,7 +141,7 @@ public class ApplymentServiceTest {
     @Test
     public void applymentStatusTest() throws Exception {
         String s = "test";
-        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxPartnerApiV3Config);
         ApplymentStatusResult applymentStatusResult = service.applymentStatus(s);
         System.out.println(applymentStatusResult.toString());
     }
@@ -152,8 +154,8 @@ public class ApplymentServiceTest {
      */
     @Test
     public void changeSubBankTest() throws Exception {
-        String s = "160295293";
-        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
+        String s = "160295297";
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxPartnerApiV3Config);
         BankAccountInfo bankAccountInfo = new BankAccountInfo();
         boolean b = service.changeSubBank(s, bankAccountInfo);
         System.out.println(b);
@@ -167,8 +169,8 @@ public class ApplymentServiceTest {
      */
     @Test
     public void querySubMchTest() throws Exception {
-        String s = "160295293";
-        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
+        String s = "16029529";
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxPartnerApiV3Config);
         BankAccountResult bankAccountResult = service.querySubMch(s);
         System.out.println(bankAccountResult);
     }
@@ -186,7 +188,7 @@ public class ApplymentServiceTest {
      */
     @Test
     public void fileUploadTest() throws Exception {
-        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxApiV3Config);
+        ApplymentService service = ApiV3ServiceFactory.getApplymentService(wxPartnerApiV3Config);
         Map<String, String> map = service.upload(filePath);
         System.out.println(map);
     }

@@ -24,6 +24,15 @@ import java.util.Base64;
 public class FieldEncryptFormat {
 
 
+    /**
+     * 敏感信息字段加密
+     *
+     * @param encryptObject
+     * @param certificate
+     * @throws IllegalAccessException
+     * @throws IOException
+     * @throws IllegalBlockSizeException
+     */
     public static void encryptField(Object encryptObject, X509Certificate certificate) throws IllegalAccessException, IOException, IllegalBlockSizeException {
         Class<?> infoClass = encryptObject.getClass();
         Field[] infoFieldArray = infoClass.getDeclaredFields();

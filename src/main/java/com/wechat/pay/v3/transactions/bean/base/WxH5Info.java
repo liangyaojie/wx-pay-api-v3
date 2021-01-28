@@ -1,5 +1,6 @@
 package com.wechat.pay.v3.transactions.bean.base;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -17,6 +18,7 @@ public class WxH5Info {
      * 必填；是
      */
     @JsonProperty("type")
+    @JSONField(name = "type")
     private String type;
 
     /**
@@ -24,6 +26,7 @@ public class WxH5Info {
      * 必填；否
      */
     @JsonProperty("app_name")
+    @JSONField(name = "app_name")
     private String appName;
 
     /**
@@ -31,6 +34,7 @@ public class WxH5Info {
      * 必填；否
      */
     @JsonProperty("app_url")
+    @JSONField(name = "app_url")
     private String appUrl;
 
     /**
@@ -38,6 +42,7 @@ public class WxH5Info {
      * 必填；否
      */
     @JsonProperty("bundle_id")
+    @JSONField(name = "bundle_id")
     private String bundleId;
 
     /**
@@ -45,6 +50,7 @@ public class WxH5Info {
      * 必填；否
      */
     @JsonProperty("package_name")
+    @JSONField(name = "package_name")
     private String packageName;
 
     public String getType() {
