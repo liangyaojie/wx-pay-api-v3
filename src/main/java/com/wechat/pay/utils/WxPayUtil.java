@@ -45,7 +45,7 @@ public class WxPayUtil {
      */
     public CloseableHttpClient httpClient;
 
-    private AutoUpdateCertificatesVerifier verifier;
+    public AutoUpdateCertificatesVerifier verifier;
 
     public X509Certificate certificate;
 

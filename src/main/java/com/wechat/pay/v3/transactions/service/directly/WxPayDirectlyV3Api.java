@@ -35,13 +35,13 @@ public interface WxPayDirectlyV3Api {
     /**
      * 微信支付订单号查询订单请求url
      */
-    public static final String QUERY_BY_TRANSACTION_ID_URL = "https://api.mch.weixin.qq.com/v3/pay/partner/transactions/id/{transaction_id}";
+    public static final String QUERY_BY_TRANSACTION_ID_URL = "https://api.mch.weixin.qq.com/v3/pay/transactions/id/{transaction_id}";
 
 
     /**
      * 商户订单号查询订单请求url
      */
-    public static final String QUERY_BY_OUT_TRADE_NO_URL = "https://api.mch.weixin.qq.com/v3/pay/partner/transactions/out-trade-no/{out_trade_no}";
+    public static final String QUERY_BY_OUT_TRADE_NO_URL = "https://api.mch.weixin.qq.com/v3/pay/transactions/out-trade-no/{out_trade_no}";
 
     /**
      * 关闭订单请求url

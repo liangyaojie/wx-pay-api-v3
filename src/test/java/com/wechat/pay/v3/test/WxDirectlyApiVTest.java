@@ -5,6 +5,9 @@ import com.wechat.pay.factory.ApiV3ServiceFactory;
 import com.wechat.pay.utils.sign.WxApiV3SignUtils;
 import com.wechat.pay.v3.config.WxDirectlyApiV3Config;
 import com.wechat.pay.v3.transactions.bean.base.WxAmount;
+import com.wechat.pay.v3.transactions.bean.base.WxDetail;
+import com.wechat.pay.v3.transactions.bean.base.WxH5Info;
+import com.wechat.pay.v3.transactions.bean.base.WxSceneInfo;
 import com.wechat.pay.v3.transactions.bean.directly.WxDirectlyPayer;
 import com.wechat.pay.v3.transactions.bean.directly.WxDirectlyRequest;
 import com.wechat.pay.v3.transactions.service.partner.WxPayPartnerV3Api;
@@ -29,20 +32,19 @@ public class WxDirectlyApiVTest {
     public void setWxConfig() {
 
         this.wxDirectlyApiV3Config = new WxDirectlyApiV3Config();
-
         //设置公众号ID
-        wxDirectlyApiV3Config.setAppId("wxbe55f9bdd");
+        wxDirectlyApiV3Config.setAppId("wx111ba6d21f6cb56c");
         //设置商户号
-        wxDirectlyApiV3Config.setMchId("16029529");
+        wxDirectlyApiV3Config.setMchId("1299208701");
         //设置apiV3key
-        wxDirectlyApiV3Config.setApiV3Key("sdfdgdfbdfvvdgs243625gs");
+        wxDirectlyApiV3Config.setApiV3Key("3FWDWvMPEBw84aRbDFVDrQUv2jKCb911");
         //设置商户证书序列号
-        wxDirectlyApiV3Config.setMchSerialNo("4FE3502F2FE44A40B5E0E5A6474A2F29B77");
+        wxDirectlyApiV3Config.setMchSerialNo("3D6FAC6C982DE7822A2B72E33AECB72D6AEBC751");
         //设置私钥文件路径
-        wxDirectlyApiV3Config.setMchPrivateKeyFilePath("D:/Desktop/apiclient_key.pem");
+        wxDirectlyApiV3Config.setMchPrivateKeyFilePath("D:\\huyi\\ssl\\wx\\directly\\apiclient_key.pem");
         //设置平台证书文件路径
-        wxDirectlyApiV3Config.setWeChatPayCertificateFilePath("D:/wx/wechatpay_288DBF1A320CE05945995870D22D8B81CC43C18E.pem");
-        wxDirectlyApiV3Config.setNotifyUrl("http://v1.dotcer/pay/wx/notify");
+        wxDirectlyApiV3Config.setWeChatPayCertificateFilePath("D:\\huyi\\ssl\\wx\\directly\\apiclient_cert.pem");
+        wxDirectlyApiV3Config.setNotifyUrl("http://v1.dotcanting.com/order/pay/wx/notify");
     }
 
 
@@ -159,19 +161,37 @@ public class WxDirectlyApiVTest {
         WxDirectlyRequest wxRequest = new WxDirectlyRequest();
         wxRequest.setAppId(wxDirectlyApiV3Config.getAppId());
         wxRequest.setMchId(wxDirectlyApiV3Config.getMchId());
-        wxRequest.setAttach("接口测试");
-        wxRequest.setGoodsTag("WXG");
-        wxRequest.setTimeExpire("2021-01-22T15:29:35+08:00");
+        //商品描述
         wxRequest.setDescription("apiV3接口测试");
-        wxRequest.setOutTradeNo("apiV3test001");
+        //商户订单号
+        wxRequest.setOutTradeNo("apiV3test002");
+        //订单失效时间 非必传
+        wxRequest.setTimeExpire("2021-06-08T10:34:56+08:00");
+        //附加数据，传什么返回什么 非必传
+        wxRequest.setAttach("接口测试");
+        //微信通知回调地址
         wxRequest.setNotifyUrl(wxDirectlyApiV3Config.getNotifyUrl());
+        //订单优惠标记 非必传
+        wxRequest.setGoodsTag("WXG");
+
+        //订单金额
         WxAmount wxAmount = new WxAmount();
+        //订单总金额
         wxAmount.setTotal(1);
+        //货币类型 非必传
         wxAmount.setCurrency("CNY");
         wxRequest.setAmount(wxAmount);
-        WxDirectlyPayer wxDirectlyPayer = new WxDirectlyPayer();
-        wxDirectlyPayer.setOpenId("oy6W_w9plkaBgFJuMmyuFRQtmIhI");
-        wxRequest.setPayer(wxDirectlyPayer);
+      //优惠功能 非必传
+        WxDetail wxDetail = new WxDetail();
+        //场景信息
+        WxSceneInfo wxSceneInfo = new WxSceneInfo();
+        //h5场景信息
+        WxH5Info wxH5Info = new WxH5Info();
+        wxH5Info.setType("Wap");
+        wxSceneInfo.setH5Info(wxH5Info);
+        //用户的客户端ip
+        wxSceneInfo.setPayerClientIp("14.23.150.211 ");
+        wxRequest.setSceneInfo(wxSceneInfo);
         System.out.println(wxRequest);
         return wxRequest;
     }

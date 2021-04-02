@@ -1,16 +1,26 @@
 package com.wechat.pay.utils.sign;
 
+import com.wechat.pay.contrib.apache.httpclient.auth.AutoUpdateCertificatesVerifier;
+import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner;
+import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Credentials;
 import com.wechat.pay.contrib.apache.httpclient.util.PemUtil;
+import com.wechat.pay.v3.config.WxPartnerApiV3Config;
 import okhttp3.HttpUrl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.X509Certificate;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -43,7 +53,7 @@ public class WxApiV3SignUtils {
 
     private static final Random RANDOM = new SecureRandom();
 
-    private static final Map<String, X509Certificate> CERTIFICATE_MAP = new HashMap<>();
+    private static final Map<String, X509Certificate> CERTIFICATE_MAP = new ConcurrentHashMap<String, X509Certificate>();
 
 
     /**
@@ -83,8 +93,14 @@ public class WxApiV3SignUtils {
      * @return
      * @throws Exception
      */
-    public static PrivateKey getPrivateKey(String mchPrivateKeyFilePath) throws Exception {
-        return PemUtil.loadPrivateKey(new FileInputStream(new File(mchPrivateKeyFilePath)));
+    public static PrivateKey getPrivateKey(String mchPrivateKeyFilePath) {
+        try {
+            return PemUtil.loadPrivateKey(new FileInputStream(new File(mchPrivateKeyFilePath)));
+        } catch (FileNotFoundException e) {
+            LOGGER.error("文件传输错误", e);
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -154,7 +170,7 @@ public class WxApiV3SignUtils {
 
         // 自动更新证书
         if (CERTIFICATE_MAP.isEmpty() || !CERTIFICATE_MAP.containsKey(weChatPaySerial)) {
-            refreshCertificate();
+            refreshCertificate(wxPartnerApiV3Config);
         }
 
         X509Certificate certificate = CERTIFICATE_MAP.get(weChatPaySerial);
@@ -186,9 +202,39 @@ public class WxApiV3SignUtils {
         }
     }
 
+    private WxPartnerApiV3Config wxPartnerApiV3Config;
+
 
     //TODO 自动获取平台证书，保存证书序列号和证书到  CERTIFICATE_MAP里
-    private void refreshCertificate() {
+
+    /**
+     * 证书动态刷新，将最新的证书放入Map中
+     */
+    public void refreshCertificate(WxPartnerApiV3Config wxPartnerApiV3Config) {
+
+        //获取证书
+        AutoUpdateCertificatesVerifier verifier = null;
+        try {
+            verifier = new AutoUpdateCertificatesVerifier(
+                    new WechatPay2Credentials(wxPartnerApiV3Config.getSpMchId(), new PrivateKeySigner(wxPartnerApiV3Config.getMchSerialNo(), getPrivateKey(wxPartnerApiV3Config.getMchPrivateKeyFilePath()))),
+                    wxPartnerApiV3Config.getApiV3Key().getBytes("utf-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        X509Certificate certificate = verifier.getValidCertificate();
+        LOGGER.info("NativeService-refreshCertificate x509Certificate 最近的证书为：" + certificate);
+        try {
+            String responseSerialNo = String.valueOf(certificate.getSerialNumber());
+            System.out.println("NativeService-getConfigProperties 证书序列号为serial_no：" + responseSerialNo);
+            // 清空HashMap()
+            CERTIFICATE_MAP.clear();
+            // 放入证书
+            CERTIFICATE_MAP.put(responseSerialNo, certificate);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 

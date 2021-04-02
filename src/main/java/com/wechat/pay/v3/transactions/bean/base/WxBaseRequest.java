@@ -18,7 +18,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("description")
     @JSONField(name = "description")
-    private String description;
+    protected String description;
 
     /**
      * 商户订单号
@@ -26,7 +26,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("out_trade_no")
     @JSONField(name = "out_trade_no")
-    private String outTradeNo;
+    protected String outTradeNo;
 
     /**
      * 交易结束时间
@@ -34,7 +34,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("time_expire")
     @JSONField(name = "time_expire")
-    private String timeExpire;
+    protected String timeExpire;
 
     /**
      * 附加数据
@@ -42,7 +42,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("attach")
     @JSONField(name = "attach")
-    private String attach;
+    protected String attach;
 
     /**
      * 通知地址
@@ -50,7 +50,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("notify_url")
     @JSONField(name = "notify_url")
-    private String notifyUrl;
+    protected String notifyUrl;
 
     /**
      * 订单优惠标记
@@ -58,7 +58,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("goods_tag")
     @JSONField(name = "goods_tag")
-    private String goodsTag;
+    protected String goodsTag;
 
     /**
      * 结算信息
@@ -66,7 +66,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("settle_info")
     @JSONField(name = "settle_info")
-    private WxSettleInfo settleInfo;
+    protected WxSettleInfo settleInfo;
 
     /**
      * 订单金额
@@ -74,7 +74,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("amount")
     @JSONField(name = "amount")
-    private WxAmount amount;
+    protected WxAmount amount;
 
     /**
      * 优惠功能
@@ -82,7 +82,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("detail")
     @JSONField(name = "detail")
-    private WxDetail detail;
+    protected WxDetail detail;
 
     /**
      * 场景信息
@@ -90,7 +90,7 @@ public class WxBaseRequest {
      */
     @JsonProperty("scene_info")
     @JSONField(name = "scene_info")
-    private WxSceneInfo sceneInfo;
+    protected WxSceneInfo sceneInfo;
 
 
     public String getDescription() {

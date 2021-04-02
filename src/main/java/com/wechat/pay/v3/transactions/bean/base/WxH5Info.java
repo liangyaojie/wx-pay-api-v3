@@ -19,7 +19,7 @@ public class WxH5Info {
      */
     @JsonProperty("type")
     @JSONField(name = "type")
-    private String type;
+    protected String type;
 
     /**
      * 应用名称
@@ -27,7 +27,7 @@ public class WxH5Info {
      */
     @JsonProperty("app_name")
     @JSONField(name = "app_name")
-    private String appName;
+    protected String appName;
 
     /**
      * 网站URL
@@ -35,7 +35,7 @@ public class WxH5Info {
      */
     @JsonProperty("app_url")
     @JSONField(name = "app_url")
-    private String appUrl;
+    protected String appUrl;
 
     /**
      * iOS平台BundleID
@@ -43,7 +43,7 @@ public class WxH5Info {
      */
     @JsonProperty("bundle_id")
     @JSONField(name = "bundle_id")
-    private String bundleId;
+    protected String bundleId;
 
     /**
      * Android平台PackageName
@@ -51,7 +51,7 @@ public class WxH5Info {
      */
     @JsonProperty("package_name")
     @JSONField(name = "package_name")
-    private String packageName;
+    protected String packageName;
 
     public String getType() {
         return type;

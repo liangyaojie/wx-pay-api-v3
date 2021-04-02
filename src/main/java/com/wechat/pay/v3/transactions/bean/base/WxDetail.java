@@ -21,7 +21,7 @@ public class WxDetail {
      */
     @JsonProperty("cost_price")
     @JSONField(name = "cost_price")
-    private Integer costPrice;
+    protected Integer costPrice;
 
     /**
      * 商品小票ID
@@ -29,7 +29,7 @@ public class WxDetail {
      */
     @JsonProperty("invoice_id")
     @JSONField(name = "invoice_id")
-    private String invoiceId;
+    protected String invoiceId;
 
     /**
      * 商品小票ID
@@ -37,7 +37,7 @@ public class WxDetail {
      */
     @JsonProperty("goods_detail")
     @JSONField(name = "goods_detail")
-    private List<WxGoodsDetail> goodsDetail;
+    protected List<WxGoodsDetail> goodsDetail;
 
     public Integer getCostPrice() {
         return costPrice;

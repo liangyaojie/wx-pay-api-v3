@@ -20,7 +20,7 @@ public class WxBaseResult {
      */
     @JsonProperty("out_trade_no")
     @JSONField(name = "out_trade_no")
-    private String outTradeNo;
+    protected String outTradeNo;
 
     /**
      * 微信支付订单号
@@ -28,7 +28,7 @@ public class WxBaseResult {
      */
     @JsonProperty("transaction_id")
     @JSONField(name = "transaction_id")
-    private String transactionId;
+    protected String transactionId;
 
 
     /**
@@ -37,7 +37,7 @@ public class WxBaseResult {
      */
     @JsonProperty("trade_type")
     @JSONField(name = "trade_type")
-    private String tradeType;
+    protected String tradeType;
 
     /**
      * 交易状态
@@ -45,7 +45,7 @@ public class WxBaseResult {
      */
     @JsonProperty("trade_state")
     @JSONField(name = "trade_state")
-    private String tradeState;
+    protected String tradeState;
 
     /**
      * 交易状态描述
@@ -53,7 +53,7 @@ public class WxBaseResult {
      */
     @JsonProperty("trade_state_desc")
     @JSONField(name = "trade_state_desc")
-    private String tradeStateDesc;
+    protected String tradeStateDesc;
 
 
     /**
@@ -62,7 +62,7 @@ public class WxBaseResult {
      */
     @JsonProperty("bank_type")
     @JSONField(name = "bank_type")
-    private String bankType;
+    protected String bankType;
 
 
     /**
@@ -71,7 +71,7 @@ public class WxBaseResult {
      */
     @JsonProperty("attach")
     @JSONField(name = "attach")
-    private String attach;
+    protected String attach;
 
 
     /**
@@ -80,7 +80,7 @@ public class WxBaseResult {
      */
     @JsonProperty("success_time")
     @JSONField(name = "success_time")
-    private String successTime;
+    protected String successTime;
 
 
 
@@ -90,7 +90,7 @@ public class WxBaseResult {
      */
     @JsonProperty("payer")
     @JSONField(name = "payer")
-    private WxPayer payer;
+    protected WxPayer payer;
 
 
     /**
@@ -99,7 +99,7 @@ public class WxBaseResult {
      */
     @JsonProperty("amount")
     @JSONField(name = "amount")
-    private WxAmount amount;
+    protected WxAmount amount;
 
     /**
      * 场景信息
@@ -107,7 +107,7 @@ public class WxBaseResult {
      */
     @JsonProperty("scene_info")
     @JSONField(name = "scene_info")
-    private WxSceneInfo sceneInfo;
+    protected WxSceneInfo sceneInfo;
 
     /**
      * 优惠功能
@@ -115,7 +115,7 @@ public class WxBaseResult {
      */
     @JsonProperty("promotion_detail")
     @JSONField(name = "promotion_detail")
-    private List<WxPromotionDetail> promotionDetail;
+    protected List<WxPromotionDetail> promotionDetail;
 
 
     public String getOutTradeNo() {

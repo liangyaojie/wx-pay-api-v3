@@ -18,7 +18,7 @@ public class WxGoodsDetail {
      */
     @JsonProperty("merchant_goods_id")
     @JSONField(name = "merchant_goods_id")
-    private String merchantGoodsId;
+    protected String merchantGoodsId;
 
 
     /**
@@ -27,7 +27,7 @@ public class WxGoodsDetail {
      */
     @JsonProperty("wechatpay_goods_id")
     @JSONField(name = "wechatpay_goods_id")
-    private String weChatPayGoodsId;
+    protected String weChatPayGoodsId;
 
     /**
      * 商品名称
@@ -35,7 +35,7 @@ public class WxGoodsDetail {
      */
     @JsonProperty("goods_name")
     @JSONField(name = "goods_name")
-    private String goodsName;
+    protected String goodsName;
 
     /**
      * 商品数量
@@ -43,7 +43,7 @@ public class WxGoodsDetail {
      */
     @JsonProperty("quantity")
     @JSONField(name = "quantity")
-    private String quantity;
+    protected String quantity;
 
     /**
      * 商品单价
@@ -51,21 +51,21 @@ public class WxGoodsDetail {
      */
     @JsonProperty("unit_price")
     @JSONField(name = "unit_price")
-    private String unitPrice;
+    protected String unitPrice;
 
     /**
      * 商品优惠金额
      */
     @JsonProperty("discount_amount")
     @JSONField(name = "discount_amount")
-    private String discountAmount;
+    protected String discountAmount;
 
     /**
      * 商品备注
      */
     @JsonProperty("goods_remark")
     @JSONField(name = "goods_remark")
-    private String goodsRemark;
+    protected String goodsRemark;
 
     public String getMerchantGoodsId() {
         return merchantGoodsId;

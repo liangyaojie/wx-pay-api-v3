@@ -18,7 +18,7 @@ public class WxAmount {
      */
     @JsonProperty("total")
     @JSONField(name = "total")
-    private Integer total;
+    protected Integer total;
 
     /**
      * 用户支付金额，单位为分
@@ -26,7 +26,7 @@ public class WxAmount {
      */
     @JsonProperty("payer_total")
     @JSONField(name = "payer_total")
-    private Integer payerTotal;
+    protected Integer payerTotal;
 
     /**
      * 货币类型
@@ -34,14 +34,14 @@ public class WxAmount {
      */
     @JsonProperty("currency")
     @JSONField(name = "currency")
-    private String currency;
+    protected String currency;
     /**
      * 用户支付币种
      * 必填；否
      */
     @JsonProperty("payer_currency")
     @JSONField(name = "payer_currency")
-    private String payerCurrency;
+    protected String payerCurrency;
 
     public Integer getTotal() {
         return total;

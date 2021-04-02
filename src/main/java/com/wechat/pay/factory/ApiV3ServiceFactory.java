@@ -22,17 +22,17 @@ public class ApiV3ServiceFactory {
     /**
      * 特约商户进件服务对象
      */
-    public static ApplymentService applymentService;
+    public volatile static ApplymentService applymentService;
 
     /**
      * 服务商api服务对象
      */
-    public static WxPayPartnerV3Api wxPayPartnerV3Api;
+    public volatile static WxPayPartnerV3Api wxPayPartnerV3Api;
 
     /**
      * 直连商户api服务对象
      */
-    public static WxPayDirectlyV3Api wxPayDirectlyV3Api;
+    public volatile static WxPayDirectlyV3Api wxPayDirectlyV3Api;
 
 
     public static WxPayUtil wxPayUtil;
@@ -45,10 +45,14 @@ public class ApiV3ServiceFactory {
      * @return
      */
     public static ApplymentService getApplymentService(WxPartnerApiV3Config wxPartnerApiV3Config) {
-        synchronized (ApiV3ServiceFactory.class) {
-            if (applymentService == null) {
-                wxPayUtil = new WxPayUtil();
-                applymentService = new ApplymentServiceImpl(wxPartnerApiV3Config);
+        //控制上锁的条件
+        if (applymentService == null) {
+            synchronized (ApiV3ServiceFactory.class) {
+                //控制创建对象的条件
+                if (applymentService == null) {
+                    wxPayUtil = new WxPayUtil();
+                    applymentService = new ApplymentServiceImpl(wxPartnerApiV3Config);
+                }
             }
         }
         return applymentService;
@@ -62,11 +66,15 @@ public class ApiV3ServiceFactory {
      * @return
      */
     public static WxPayPartnerV3Api getWxPayPartnerV3Api(WxPartnerApiV3Config wxPartnerApiV3Config) {
-        synchronized (ApiV3ServiceFactory.class) {
-            if (wxPayPartnerV3Api == null) {
-                wxPayUtil = new WxPayUtil();
-                wxPayPartnerV3Api = new WxPayPartnerV3ApiImpl(wxPartnerApiV3Config, wxPayUtil);
+        //控制上锁的条件
+        if (wxPayPartnerV3Api == null) {
+            synchronized (ApiV3ServiceFactory.class) {
+                //控制创建对象的条件
+                if (wxPayPartnerV3Api == null) {
+                    wxPayUtil = new WxPayUtil();
+                    wxPayPartnerV3Api = new WxPayPartnerV3ApiImpl(wxPartnerApiV3Config, wxPayUtil);
 
+                }
             }
         }
         return wxPayPartnerV3Api;
@@ -80,10 +88,14 @@ public class ApiV3ServiceFactory {
      * @return
      */
     public static WxPayDirectlyV3Api getWxPayDirectlyV3Api(WxDirectlyApiV3Config wxDirectlyApiV3Config) {
-        synchronized (ApiV3ServiceFactory.class) {
-            if (wxPayDirectlyV3Api == null) {
-                wxPayUtil = new WxPayUtil();
-                wxPayDirectlyV3Api = new WxPayDirectlyV3ApiImpl(wxDirectlyApiV3Config);
+        //控制上锁的条件
+        if (wxPayDirectlyV3Api == null) {
+            synchronized (ApiV3ServiceFactory.class) {
+                //控制创建对象的条件
+                if (wxPayDirectlyV3Api == null) {
+                    wxPayUtil = new WxPayUtil();
+                    wxPayDirectlyV3Api = new WxPayDirectlyV3ApiImpl(wxDirectlyApiV3Config);
+                }
             }
         }
         return wxPayDirectlyV3Api;
