@@ -7,7 +7,7 @@ package com.wechat.pay.v3.transactions.bean.enums;
  * @date 2021/4/2 16:34
  * @since 1.0
  */
-enum TradeState {
+enum TradeStateEnum {
 
     /**
      * 支付成功
@@ -41,7 +41,7 @@ enum TradeState {
     private String msg;
 
 
-    TradeState(String msg) {
+    TradeStateEnum(String msg) {
         this.msg = msg;
     }
 
